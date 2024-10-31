@@ -5,10 +5,20 @@
   <%= link_to 'Browse Countries', countries_path, class: 'btn btn-primary' %>
   <%= link_to 'Explore Cities', cities_path, class: 'btn btn-primary' %>
    <%= link_to 'Weather Report', weather_reports_path, class: 'btn btn-primary' %>
-<ul>
-  <% @cities.each do |city| %>
-    <li>
-      <%= link_to city.name, city_path(city) %> - Population: <%= city.population %>, Country: <%= city.country.name %>
-    </li>
-  <% end %>
-</ul><%= paginate @cities %>
+
+<h1>Cities</h1>
+
+<%= form_with url: cities_path, method: :get, local: true do |form| %>
+  <%= form.label :query, "Search Cities by Name" %>
+  <%= form.text_field :query, value: params[:query] %>
+
+  <%= form.label :country_id, "Filter by Country" %>
+  <%= form.collection_select :country_id, @countries, :id, :name, prompt: "Select a Country", selected: params[:country_id] %>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<%= render partial: 'city', collection: @cities %>
+
+<%= paginate @cities %>
+

@@ -1,16 +1,20 @@
 class CitiesController < ApplicationController
   def index
-    @cities = if params[:query].present?
-      City.where("name LIKE ?", "%#{params[:query]}%")
-    else
-      City.all
+    @countries = Country.all
+    @cities = City.all
+    if params[:query].present?
+      @cities = @cities.where("name LIKE ?", "%#{params[:query]}%")
     end
+    if params[:country_id].present?
+      @cities = @cities.where(country_id: params[:country_id])
+    end
+
     @cities = @cities.page(params[:page]).per(10)
   end
   end
 
   def show
     @city = City.includes(:weather_reports).find(params[:id])
-    @weather_reports = @city.weather_reports.page(params[:page]).per(5) # Paginate weather reports on city show page
+    @weather_reports = @city.weather_reports.page(params[:page]).per(5) 
   end
 

@@ -17,4 +17,12 @@
     </li>
   <% end %>
 </ul>
+  <%= paginate @countries %>
+<h1>Countries</h1>
+<%= form_with(url: countries_path, method: :get, local: true) do |form| %>
+  <%= form.label :query, "Search Countries" %>
+  <%= form.text_field :query, value: params[:query] %>
+  <%= form.submit "Search" %>
+<% end %>
+<%= render @countries %>
 <%= paginate @countries %>
