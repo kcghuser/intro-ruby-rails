@@ -1,8 +1,12 @@
 <h1><%= @country.name %></h1>
 <p>Population: <%= @country.population %></p>
-<h2>Cities:</h2>
+<p>Continent: <%= @country.continent %></p>
+
+<h2>Cities in <%= @country.name %></h2>
 <ul>
-  <% @country.cities.each do |city| %>
-    <li><%= city.name %> - Population: <%= city.population %></li>
+  <% @cities.each do |city| %>
+    <li>
+      <%= link_to city.name, city_path(city) %> - Population: <%= city.population %>
+    </li>
   <% end %>
 </ul>

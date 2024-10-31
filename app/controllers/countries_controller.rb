@@ -8,6 +8,9 @@ class CountriesController < ApplicationController
   end
 
   def show
+    @country = Country.find(params[:id])
+    @country = Country.includes(:cities).find(params[:id])
+
   end
 end
 

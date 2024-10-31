@@ -1,13 +1,14 @@
-<h1>Countries</h1>
+<h1>Cities</h1>
+
 <%= link_to 'Home', root_path, class: 'btn btn-info' %>
 <%= link_to 'About Us', about_path, class: 'btn btn-info' %>
   <%= link_to 'Browse Countries', countries_path, class: 'btn btn-primary' %>
   <%= link_to 'Explore Cities', cities_path, class: 'btn btn-primary' %>
    <%= link_to 'Weather Report', weather_reports_path, class: 'btn btn-primary' %>
 <ul>
-  <% @countries.each do |country| %>
+  <% @cities.each do |city| %>
     <li>
-      <%= link_to country.name, country_path(country) %> - Population: <%= country.population %>
+      <%= link_to city.name, city_path(city) %> - Population: <%= city.population %>, Country: <%= city.country.name %>
     </li>
   <% end %>
 </ul>
