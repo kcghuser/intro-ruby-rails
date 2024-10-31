@@ -11,4 +11,4 @@
       <%= link_to city.name, city_path(city) %> - Population: <%= city.population %>, Country: <%= city.country.name %>
     </li>
   <% end %>
-</ul>
+</ul><%= paginate @cities %>

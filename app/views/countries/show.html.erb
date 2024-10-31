@@ -10,3 +10,13 @@
     </li>
   <% end %>
 </ul>
+<h1><%= @city.name %></h1>
+<p>Population: <%= @city.population %></p>
+<p>Country: <%= link_to @city.country.name, country_path(@city.country) %></p>
+
+<h2>Weather Reports</h2>
+<ul>
+  <% @city.weather_reports.each do |report| %>
+    <li><%= link_to report.date, weather_report_path(report) %></li>
+  <% end %>
+</ul>

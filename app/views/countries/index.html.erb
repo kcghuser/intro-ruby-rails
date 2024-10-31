@@ -4,6 +4,12 @@
   <%= link_to 'Browse Countries', countries_path, class: 'btn btn-primary' %>
   <%= link_to 'Explore Cities', cities_path, class: 'btn btn-primary' %>
    <%= link_to 'Weather Report', weather_reports_path, class: 'btn btn-primary' %>
+   <h1>All Countries</h1>
+<ul>
+  <% @countries.each do |country| %>
+    <li><%= link_to country.name, country_path(country) %></li>
+  <% end %>
+</ul>
 <ul>
   <% @countries.each do |country| %>
     <li>
@@ -11,3 +17,4 @@
     </li>
   <% end %>
 </ul>
+<%= paginate @countries %>
